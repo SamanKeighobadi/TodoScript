@@ -1,15 +1,30 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import NavbarInput from "./components/Navbar/NavbarInput";
+interface Todo {
+  id:number | string;
+  todo:string;
+  completed:boolean;
+}
 
 const App = () => {
 
   const [todo, setTodo] = useState<string>("");
+  const [todos, setTodos] = useState<Todo[]>([]);
+
+  const addTodo =(e:React.FormEvent) =>{
+    e.preventDefault();
+    if(todo){
+      setTodos(prevState => [...prevState,{todo,id:Date.now(),completed:false}]);
+      setTodo("");
+    }
+  }
+  console.log(todos);
 
   return (
     <div className="App">
       <h1>saman keighobadi</h1>
-      <NavbarInput  todo={todo} setTodo={setTodo} />
+      <NavbarInput  todo={todo} setTodo={setTodo} addTodo={addTodo} />
     </div>
   );
 };
