@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./App.css";
 import NavbarInput from "./components/Navbar/NavbarInput";
-interface Todo {
+import Todos from "./components/Todos/Todos";
+ export interface Todo {
   id:number | string;
   todo:string;
   completed:boolean;
@@ -19,13 +20,15 @@ const App = () => {
       setTodo("");
     }
   }
-  console.log(todos);
+  // console.log(todos);
 
   return (
     <div className="App">
       <h1>saman keighobadi</h1>
       <NavbarInput  todo={todo} setTodo={setTodo} addTodo={addTodo} />
+      <Todos todos={todos} />
     </div>
+  
   );
 };
 
