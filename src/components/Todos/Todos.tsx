@@ -3,15 +3,16 @@ import * as React from 'react';
 import {Todo} from '../../App'
 import TodoItem from './TodoItem';
 interface TodosProps {
-    todos:Todo[]
+    todos:Todo[],
+    deleteTodo:(id:string|number) => void;
 }
 
-const Todos:React.FC<TodosProps> = ({todos}) =>{
+const Todos:React.FC<TodosProps> = ({todos,deleteTodo}) =>{
     return(
         <div>
             {todos.map(todo => (
                 <div key={todo.id}>
-                    <TodoItem todo={todo} />
+                    <TodoItem todo={todo} deleteTodo={deleteTodo}/>
                     {/* <li>
                         {todo.todo}
                     </li> */}

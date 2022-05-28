@@ -20,13 +20,21 @@ const App = () => {
       setTodo("");
     }
   }
+
+  const deleteTodo = (id:number | string ) =>{
+    const allTodos = [...todos];
+    const filtredTodo = allTodos.filter(todo => todo.id !== id );
+    setTodos(filtredTodo);
+
+  }
+
   // console.log(todos);
 
   return (
     <div className="App">
       <h1>saman keighobadi</h1>
       <NavbarInput  todo={todo} setTodo={setTodo} addTodo={addTodo} />
-      <Todos todos={todos} />
+      <Todos todos={todos} deleteTodo={deleteTodo} />
     </div>
   
   );
