@@ -25,7 +25,7 @@ const TodoItem: React.FC<TodoItemProps> = ({
       }}
     >
     
-      <div className="flex justify-between items-center px-4 py-6 mb-4  bg-red-500 w-1/3 rounded">
+      <div className={`flex justify-between items-center px-4 py-6 mb-4  ${todo.completed ? "bg-cyan-500":"bg-green-500"} w-1/2 rounded`}>
         <div>
         {edit ? (
         <input className="focus:outline-none rounded border border-sky-400 px-2 py-1"
@@ -33,9 +33,9 @@ const TodoItem: React.FC<TodoItemProps> = ({
           value={editTodo}
           onChange={(e) => setEditTodo(e.target.value)}
         />
-      ) : (todo.todo)}
+      ) : (<span className="text-cyan-50 font-semibold text-lg">{todo.todo}</span>)}
           </div>
-        <div className="flex  space-x-4  ">
+        <div className="flex  space-x-4 text-cyan-50 ">
           <TrashIcon onClick={() => deleteTodo(todo.id)} className="h-5 w-5 cursor-pointer" />
           <PencilIcon onClick={() => setEdit(true)} className="h-5 w-5 cursor-pointer" />
           <CheckIcon

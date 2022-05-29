@@ -39,23 +39,30 @@ const App = () => {
     }
   };
 
-  const completeTodo = (id:string | number) =>{
+  const completeTodo = (id: string | number) => {
     const allTodos = [...todos];
-    const foundTodo = allTodos.find(todo => todo.id ===id);
-    if(foundTodo !==undefined){
-      foundTodo.completed = !foundTodo.completed;
-    }
-    console.log(foundTodo);
-    // setTodos(prevState =>[...prevState,findedTodo])
-  }
+    const foundTodo = allTodos.findIndex((todo) => todo.id === id);
+    let newTodo = allTodos[foundTodo];
+    newTodo.completed = !newTodo.completed; 
+    allTodos[foundTodo] = newTodo;
+    setTodos(allTodos);
+ 
+  };
 
   // console.log(todos);
 
   return (
-    <div className="App mx-20">
+    <div className="App  bg-cyan-100 min-h-screen">
+      <div className="mx-20 ">
+        <NavbarInput todo={todo} setTodo={setTodo} addTodo={addTodo} />
+        <Todos
+          todos={todos}
+          deleteTodo={deleteTodo}
+          EditTodo={EditTodo}
+          completeTodo={completeTodo}
+        />
+      </div>
       {/* <h1>saman keighobadi</h1> */}
-      <NavbarInput todo={todo} setTodo={setTodo} addTodo={addTodo} />
-      <Todos todos={todos} deleteTodo={deleteTodo} EditTodo={EditTodo} completeTodo={completeTodo}  />
     </div>
   );
 };
