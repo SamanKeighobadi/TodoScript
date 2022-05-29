@@ -24,11 +24,19 @@ const App = () => {
     }
   };
 
-  
   const deleteTodo = (id: number | string) => {
     const allTodos = [...todos];
     const filtredTodo = allTodos.filter((todo) => todo.id !== id);
     setTodos(filtredTodo);
+  };
+  const EditTodo = (e: React.FormEvent, id: string | number, title: string) => {
+    e.preventDefault();
+    const allTodos = [...todos];
+    const samna = allTodos.find((todo) => todo.id === id);
+
+    if (samna !== undefined) {
+      samna.todo = title;
+    }
   };
 
   // console.log(todos);
@@ -37,7 +45,7 @@ const App = () => {
     <div className="App">
       <h1>saman keighobadi</h1>
       <NavbarInput todo={todo} setTodo={setTodo} addTodo={addTodo} />
-      <Todos todos={todos} deleteTodo={deleteTodo} />
+      <Todos todos={todos} deleteTodo={deleteTodo} EditTodo={EditTodo} />
     </div>
   );
 };
