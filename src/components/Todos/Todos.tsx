@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Droppable } from "react-beautiful-dnd";
 // import Todo from './Todo';
 import { Todo } from "../../App";
 import TodoItem from "./TodoItem";
@@ -17,16 +18,23 @@ const Todos: React.FC<TodosProps> = ({
 }) => {
   return (
     <div>
-      {todos.map((todo) => (
-        <div key={todo.id}>
-          <TodoItem
-            todo={todo}
-            deleteTodo={deleteTodo}
-            EditTodo={EditTodo}
-            completeTodo={completeTodo}
-          />
-        </div>
-      ))}
+      <Droppable droppableId="Todos">
+        {(provided) => (
+          <div className="bg-blue-300" ref={provided.innerRef} {...provided.droppableProps}>
+            {todos.map((todo, index) => (
+              <div key={todo.id}>
+                <TodoItem
+                  index={index}
+                  todo={todo}
+                  deleteTodo={deleteTodo}
+                  EditTodo={EditTodo}
+                  completeTodo={completeTodo}
+                />
+              </div>
+            ))}
+          </div>
+        )}
+      </Droppable>
     </div>
   );
 };

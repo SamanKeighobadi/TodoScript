@@ -52,7 +52,7 @@ const App = () => {
   // console.log(todos);
 
   return (
-    <DragDropContext>
+    <DragDropContext onDragEnd={() =>{}}>
       <div className="App   min-h-screen">
         <div className="mx-20 ">
           <NavbarInput todo={todo} setTodo={setTodo} addTodo={addTodo} />
