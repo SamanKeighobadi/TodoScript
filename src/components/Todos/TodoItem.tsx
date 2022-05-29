@@ -33,9 +33,9 @@ const TodoItem: React.FC<TodoItemProps> = ({
           ref={provided.innerRef}
         >
           <div
-            className={`flex justify-between items-center px-4 py-6 mb-4  ${
+            className={`flex justify-between items-center px-4 py-3 mx-5 mb-4  ${
               todo.completed ? "bg-cyan-500" : "bg-green-500"
-            } w-1/2 rounded`}
+            }  rounded`}
           >
             <div>
               {edit ? (

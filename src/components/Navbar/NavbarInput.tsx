@@ -3,19 +3,24 @@ import React from "react";
 type NavbarInputProps = {
   todo: string;
   setTodo: React.Dispatch<React.SetStateAction<string>>;
-  addTodo:(e:React.FormEvent) =>void;
+  addTodo: (e: React.FormEvent) => void;
 };
 
-const NavbarInput: React.FC<NavbarInputProps> = ({ todo, setTodo,addTodo }) => {
+const NavbarInput: React.FC<NavbarInputProps> = ({
+  todo,
+  setTodo,
+  addTodo,
+}) => {
   return (
     <form onSubmit={addTodo} className="py-6">
-      <input className="border border-sky-500 rounded py-1 px-3 mr-1  focus:outline-none placeholder:text-slate-400 "
+      <input
+        className="border border-sky-500 rounded py-1 px-3 mr-1 w-80 focus:outline-none placeholder:text-slate-400 "
         type="text"
         value={todo}
         onChange={(e) => setTodo(e.target.value)}
         placeholder="Enter your todo..."
       />
-      <button className="bg-sky-600 text-white px-3 py-1 rounded" >Add</button>
+      <button className="bg-sky-600 text-white px-3 py-1 rounded">Add</button>
     </form>
   );
 };

@@ -17,10 +17,17 @@ const Todos: React.FC<TodosProps> = ({
   completeTodo,
 }) => {
   return (
-    <div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5">
       <Droppable droppableId="Todos">
         {(provided) => (
-          <div className="bg-blue-300" ref={provided.innerRef} {...provided.droppableProps}>
+          <div
+            className="bg-blue-300 rounded"
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+          >
+            <h1 className="py-3 text-slate-600 font-semibold text-xl">
+              Todos{" "}
+            </h1>
             {todos.map((todo, index) => (
               <div key={todo.id}>
                 <TodoItem
@@ -32,6 +39,27 @@ const Todos: React.FC<TodosProps> = ({
                 />
               </div>
             ))}
+          </div>
+        )}
+      </Droppable>
+
+      <Droppable droppableId="CompletedTodo">
+        {(provided) => (
+          <div className="bg-rose-300 rounded" ref={provided.innerRef}>
+            <h1 className="py-3 text-slate-600 font-semibold text-xl">
+              Completed Todo
+            </h1>
+            {/* {todos.map((todo, index) => (
+                      <div key={todo.id}>
+                        <TodoItem
+                          index={index}
+                          todo={todo}
+                          deleteTodo={deleteTodo}
+                          EditTodo={EditTodo}
+                          completeTodo={completeTodo}
+                        />
+                      </div>
+                    ))} */}
           </div>
         )}
       </Droppable>
