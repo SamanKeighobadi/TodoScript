@@ -32,24 +32,24 @@ const App = () => {
   const EditTodo = (e: React.FormEvent, id: string | number, title: string) => {
     e.preventDefault();
     const allTodos = [...todos];
-    const samna = allTodos.find((todo) => todo.id === id);
+    const foundTodo = allTodos.find((todo) => todo.id === id);
 
-    if (samna !== undefined) {
-      samna.todo = title;
+    if (foundTodo !== undefined) {
+      foundTodo.todo = title;
     }
   };
 
   const completeTodo = (id:string | number) =>{
     const allTodos = [...todos];
-    const findedTodo = allTodos.find(todo => todo.id ===id);
-    if(findedTodo !==undefined){
-      findedTodo.completed = !findedTodo.completed;
+    const foundTodo = allTodos.find(todo => todo.id ===id);
+    if(foundTodo !==undefined){
+      foundTodo.completed = !foundTodo.completed;
     }
-    console.log(findedTodo);
+    console.log(foundTodo);
     // setTodos(prevState =>[...prevState,findedTodo])
   }
 
-  console.log(todos);
+  // console.log(todos);
 
   return (
     <div className="App">
