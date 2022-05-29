@@ -39,13 +39,23 @@ const App = () => {
     }
   };
 
-  // console.log(todos);
+  const completeTodo = (id:string | number) =>{
+    const allTodos = [...todos];
+    const findedTodo = allTodos.find(todo => todo.id ===id);
+    if(findedTodo !==undefined){
+      findedTodo.completed = !findedTodo.completed;
+    }
+    console.log(findedTodo);
+    // setTodos(prevState =>[...prevState,findedTodo])
+  }
+
+  console.log(todos);
 
   return (
     <div className="App">
       <h1>saman keighobadi</h1>
       <NavbarInput todo={todo} setTodo={setTodo} addTodo={addTodo} />
-      <Todos todos={todos} deleteTodo={deleteTodo} EditTodo={EditTodo} />
+      <Todos todos={todos} deleteTodo={deleteTodo} EditTodo={EditTodo} completeTodo={completeTodo}  />
     </div>
   );
 };
