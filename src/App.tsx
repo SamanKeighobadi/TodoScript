@@ -3,6 +3,7 @@ import "./App.css";
 import NavbarInput from "./components/Navbar/NavbarInput";
 import Todos from "./components/Todos/Todos";
 import { v4 as uuid } from "uuid";
+import { DragDropContext } from "react-beautiful-dnd";
 export interface Todo {
   id: number | string;
   todo: string;
@@ -43,27 +44,28 @@ const App = () => {
     const allTodos = [...todos];
     const foundTodo = allTodos.findIndex((todo) => todo.id === id);
     let newTodo = allTodos[foundTodo];
-    newTodo.completed = !newTodo.completed; 
+    newTodo.completed = !newTodo.completed;
     allTodos[foundTodo] = newTodo;
     setTodos(allTodos);
- 
   };
 
   // console.log(todos);
 
   return (
-    <div className="App  bg-cyan-100 min-h-screen">
-      <div className="mx-20 ">
-        <NavbarInput todo={todo} setTodo={setTodo} addTodo={addTodo} />
-        <Todos
-          todos={todos}
-          deleteTodo={deleteTodo}
-          EditTodo={EditTodo}
-          completeTodo={completeTodo}
-        />
+    <DragDropContext>
+      <div className="App   min-h-screen">
+        <div className="mx-20 ">
+          <NavbarInput todo={todo} setTodo={setTodo} addTodo={addTodo} />
+          <Todos
+            todos={todos}
+            deleteTodo={deleteTodo}
+            EditTodo={EditTodo}
+            completeTodo={completeTodo}
+          />
+        </div>
+        {/* <h1>saman keighobadi</h1> */}
       </div>
-      {/* <h1>saman keighobadi</h1> */}
-    </div>
+    </DragDropContext>
   );
 };
 
