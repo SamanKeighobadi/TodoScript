@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Todo } from "../../App";
+import { TrashIcon, CheckIcon, PencilIcon } from "@heroicons/react/solid";
 interface TodoItemProps {
   todo: Todo;
   deleteTodo: (id: string | number) => void;
@@ -23,22 +24,26 @@ const TodoItem: React.FC<TodoItemProps> = ({
         setEdit(false);
       }}
     >
-      {edit ? (
-        <input
+    
+      <div className="flex justify-between items-center px-4 py-6 mb-4  bg-red-500 w-1/3 rounded">
+        <div>
+        {edit ? (
+        <input className="focus:outline-none rounded border border-sky-400 px-2 py-1"
           type="text"
           value={editTodo}
           onChange={(e) => setEditTodo(e.target.value)}
         />
-      ) : null}
-
-      <li>{todo.todo}</li>
-
-        <span onClick={() => deleteTodo(todo.id)}>&times;</span>
-        {/* <DeleteIcon /> */}
-        <span onClick={() => setEdit(true)}>edit</span>
-        {/* <CheckIcon /> */}
-        <span onClick={() => completeTodo(todo.id)}>done</span>
-        {/* <EditIcon /> */}
+      ) : (todo.todo)}
+          </div>
+        <div className="flex  space-x-4  ">
+          <TrashIcon onClick={() => deleteTodo(todo.id)} className="h-5 w-5 cursor-pointer" />
+          <PencilIcon onClick={() => setEdit(true)} className="h-5 w-5 cursor-pointer" />
+          <CheckIcon
+            onClick={() => completeTodo(todo.id)}
+            className="h-5 w-5 cursor-pointer"
+          />
+        </div>
+      </div>
     </form>
   );
 };

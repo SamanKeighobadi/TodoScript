@@ -52,8 +52,8 @@ const App = () => {
   // console.log(todos);
 
   return (
-    <div className="App">
-      <h1>saman keighobadi</h1>
+    <div className="App mx-20">
+      {/* <h1>saman keighobadi</h1> */}
       <NavbarInput todo={todo} setTodo={setTodo} addTodo={addTodo} />
       <Todos todos={todos} deleteTodo={deleteTodo} EditTodo={EditTodo} completeTodo={completeTodo}  />
     </div>
