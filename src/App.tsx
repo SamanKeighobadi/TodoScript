@@ -4,6 +4,7 @@ import NavbarInput from "./components/Navbar/NavbarInput";
 import Todos from "./components/Todos/Todos";
 import { v4 as uuid } from "uuid";
 import { DragDropContext } from "react-beautiful-dnd";
+import { toast, ToastContainer } from "react-toastify";
 export interface Todo {
   id: number | string;
   todo: string;
@@ -13,7 +14,13 @@ export interface Todo {
 const App = () => {
   const [todo, setTodo] = useState<string>("");
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [completedTodos, setCompletedTodos] = useState<Todo[]>([{id:1,todo:"Sleep",completed:true}]);
 
+  /**
+   *
+   *
+   * @param {React.FormEvent} e
+   */
   const addTodo = (e: React.FormEvent) => {
     e.preventDefault();
     if (todo) {
@@ -25,11 +32,30 @@ const App = () => {
     }
   };
 
+  /**
+   *
+   *
+   * @param {(number | string)} id
+   */
   const deleteTodo = (id: number | string) => {
     const allTodos = [...todos];
     const filtredTodo = allTodos.filter((todo) => todo.id !== id);
     setTodos(filtredTodo);
+
+    toast.success("Task removed", {
+      pauseOnHover: false,
+      position: "bottom-left",
+      theme: "colored",
+    });
   };
+
+  /**
+   *
+   *
+   * @param {React.FormEvent} e
+   * @param {(string | number)} id
+   * @param {string} title
+   */
   const EditTodo = (e: React.FormEvent, id: string | number, title: string) => {
     e.preventDefault();
     const allTodos = [...todos];
@@ -40,6 +66,11 @@ const App = () => {
     }
   };
 
+  /**
+   *
+   *
+   * @param {(string | number)} id
+   */
   const completeTodo = (id: string | number) => {
     const allTodos = [...todos];
     const foundTodo = allTodos.findIndex((todo) => todo.id === id);
@@ -52,7 +83,7 @@ const App = () => {
   // console.log(todos);
 
   return (
-    <DragDropContext onDragEnd={() =>{}}>
+    <DragDropContext onDragEnd={() => {}}>
       <div className="App   min-h-screen">
         <div className="mx-20 ">
           <NavbarInput todo={todo} setTodo={setTodo} addTodo={addTodo} />
@@ -61,10 +92,12 @@ const App = () => {
             deleteTodo={deleteTodo}
             EditTodo={EditTodo}
             completeTodo={completeTodo}
+            completedTodos={completedTodos}
           />
         </div>
         {/* <h1>saman keighobadi</h1> */}
       </div>
+      <ToastContainer />
     </DragDropContext>
   );
 };

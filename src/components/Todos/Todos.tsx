@@ -5,6 +5,7 @@ import { Todo } from "../../App";
 import TodoItem from "./TodoItem";
 interface TodosProps {
   todos: Todo[];
+  completedTodos: Todo[];
   deleteTodo: (id: string | number) => void;
   EditTodo: (e: React.FormEvent, id: string | number, title: string) => void;
   completeTodo: (id: string | number) => void;
@@ -15,6 +16,7 @@ const Todos: React.FC<TodosProps> = ({
   deleteTodo,
   EditTodo,
   completeTodo,
+  completedTodos,
 }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5">
@@ -49,17 +51,17 @@ const Todos: React.FC<TodosProps> = ({
             <h1 className="py-3 text-slate-600 font-semibold text-xl">
               Completed Todo
             </h1>
-            {/* {todos.map((todo, index) => (
-                      <div key={todo.id}>
-                        <TodoItem
-                          index={index}
-                          todo={todo}
-                          deleteTodo={deleteTodo}
-                          EditTodo={EditTodo}
-                          completeTodo={completeTodo}
-                        />
-                      </div>
-                    ))} */}
+            {completedTodos.map((todo, index) => (
+              <div key={todo.id}>
+                <TodoItem
+                  index={index}
+                  todo={todo}
+                  deleteTodo={deleteTodo}
+                  EditTodo={EditTodo}
+                  completeTodo={completeTodo}
+                />
+              </div>
+            ))}
           </div>
         )}
       </Droppable>
