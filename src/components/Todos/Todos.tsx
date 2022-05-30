@@ -41,6 +41,7 @@ const Todos: React.FC<TodosProps> = ({
                 />
               </div>
             ))}
+            {provided.placeholder}
           </div>
         )}
       </Droppable>
@@ -62,6 +63,7 @@ const Todos: React.FC<TodosProps> = ({
                 />
               </div>
             ))}
+            {provided.placeholder}
           </div>
         )}
       </Droppable>

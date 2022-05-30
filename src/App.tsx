@@ -3,7 +3,7 @@ import "./App.css";
 import NavbarInput from "./components/Navbar/NavbarInput";
 import Todos from "./components/Todos/Todos";
 import { v4 as uuid } from "uuid";
-import { DragDropContext } from "react-beautiful-dnd";
+import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { toast, ToastContainer } from "react-toastify";
 export interface Todo {
   id: number | string;
@@ -14,7 +14,7 @@ export interface Todo {
 const App = () => {
   const [todo, setTodo] = useState<string>("");
   const [todos, setTodos] = useState<Todo[]>([]);
-  const [completedTodos, setCompletedTodos] = useState<Todo[]>([{id:1,todo:"Sleep",completed:true}]);
+  const [completedTodos, setCompletedTodos] = useState<Todo[]>([]);
 
   /**
    *
@@ -81,9 +81,41 @@ const App = () => {
   };
 
   // console.log(todos);
+  const onDragEnd = (result: DropResult) => {
+    console.log(result);
+    const { source, destination } = result;
+
+    if (!destination) return;
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    )
+      return;
+
+    let add,
+      active = todos,
+      completed = completedTodos;
+
+    if (source.droppableId === "Todos") {
+      add = active[source.index];
+      active.splice(source.index, 1);
+    } else {
+      add = completed[source.index];
+      completed.splice(source.index, 1);
+    }
+
+    if (destination.droppableId === "Todos") {
+      active.splice(destination.index, 0, add);
+    } else {
+      completed.splice(destination.index, 0, add);
+    }
+
+    setCompletedTodos(completed);
+    setTodos(active);
+  };
 
   return (
-    <DragDropContext onDragEnd={() => {}}>
+    <DragDropContext onDragEnd={onDragEnd}>
       <div className="App   min-h-screen">
         <div className="mx-20 ">
           <NavbarInput todo={todo} setTodo={setTodo} addTodo={addTodo} />
