@@ -23,11 +23,11 @@ const Todos: React.FC<TodosProps> = ({
       <Droppable droppableId="Todos">
         {(provided) => (
           <div
-            className="bg-blue-300 rounded"
+            className="bg-violet-500 rounded h-fit"
             ref={provided.innerRef}
             {...provided.droppableProps}
           >
-            <h1 className="py-3 text-slate-600 font-semibold text-xl">
+            <h1 className="py-3 text-slate-50 font-semibold text-xl">
               Todos{" "}
             </h1>
             {todos.map((todo, index) => (
@@ -48,8 +48,8 @@ const Todos: React.FC<TodosProps> = ({
 
       <Droppable droppableId="CompletedTodo">
         {(provided) => (
-          <div className="bg-rose-300 rounded" ref={provided.innerRef}>
-            <h1 className="py-3 text-slate-600 font-semibold text-xl">
+          <div className="bg-violet-500 rounded h-fit" ref={provided.innerRef}>
+            <h1 className="py-3 text-slate-50 font-semibold text-xl">
               Completed Todo
             </h1>
             {completedTodos.map((todo, index) => (

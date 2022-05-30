@@ -34,7 +34,7 @@ const TodoItem: React.FC<TodoItemProps> = ({
         >
           <div
             className={`flex justify-between items-center px-4 py-3 mx-5 mb-4  ${
-              todo.completed ? "bg-cyan-500" : "bg-green-500"
+              todo.completed ? "bg-green-500" : "bg-violet-900"
             }  rounded`}
           >
             <div>
@@ -46,7 +46,7 @@ const TodoItem: React.FC<TodoItemProps> = ({
                   onChange={(e) => setEditTodo(e.target.value)}
                 />
               ) : (
-                <span className="text-cyan-50 font-semibold text-lg">
+                <span className={`text-cyan-50 font-semibold text-lg ${todo.completed ? "line-through":""}`}>
                   {todo.todo}
                 </span>
               )}

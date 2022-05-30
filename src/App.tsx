@@ -58,11 +58,14 @@ const App = () => {
    */
   const EditTodo = (e: React.FormEvent, id: string | number, title: string) => {
     e.preventDefault();
-    const allTodos = [...todos];
-    const foundTodo = allTodos.find((todo) => todo.id === id);
+    if(title.length >0){
 
-    if (foundTodo !== undefined) {
-      foundTodo.todo = title;
+      const allTodos = [...todos];
+      const foundTodo = allTodos.find((todo) => todo.id === id);
+      
+      if (foundTodo !== undefined) {
+        foundTodo.todo = title;
+      }
     }
   };
 
@@ -116,7 +119,7 @@ const App = () => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className="App   min-h-screen">
+      <div className="App  bg-indigo-800  min-h-screen">
         <div className="mx-20 ">
           <NavbarInput todo={todo} setTodo={setTodo} addTodo={addTodo} />
           <Todos
