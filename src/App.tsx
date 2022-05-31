@@ -49,6 +49,18 @@ const App = () => {
     });
   };
 
+  const deleteCompletedTodo = (id: number | string) => {
+    const allTodos = [...completedTodos];
+    const filtredTodo = allTodos.filter((todo) => todo.id !== id);
+    setCompletedTodos(filtredTodo);
+
+    toast.success("Task removed", {
+      pauseOnHover: false,
+      position: "bottom-left",
+      theme: "colored",
+    });
+  };
+
   /**
    *
    *
@@ -128,6 +140,7 @@ const App = () => {
             EditTodo={EditTodo}
             completeTodo={completeTodo}
             completedTodos={completedTodos}
+            deleteCompletedTodo={deleteCompletedTodo}
           />
         </div>
         {/* <h1>saman keighobadi</h1> */}
