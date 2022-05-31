@@ -100,6 +100,7 @@ const App = () => {
     console.log(result);
     const { source, destination } = result;
 
+    // Check that dragging and dropping is done correctly and there is an ID
     if (!destination) return;
     if (
       destination.droppableId === source.droppableId &&
@@ -143,7 +144,7 @@ const App = () => {
             deleteCompletedTodo={deleteCompletedTodo}
           />
         </div>
-        {/* <h1>saman keighobadi</h1> */}
+        
       </div>
       <ToastContainer />
     </DragDropContext>
